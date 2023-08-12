@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de FormItems</title>
+</head>
+<body>
+    <h1>Item de planilla de la planilla {{ form.formNumber }}</h1>
+    <ul>
+        {% for formItem in formItems %}
+            <li>{{ formItem }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Agregar nuevo Item de planilla</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div style="display: flex; flex-direction: column;">
+            <label for="position">Posición del item de planilla:</label>
+            <input type="number" name="position" required>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <label for="package">Paquete a agregar:</label>
+            <select id="package" name="package" required>
+                <option value="">Seleccionar paquete</option>
+                {% for package in packageList %}
+                    <option value="{{ package.tracking }}">{{ package.tracking }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <label for="failureReason">Razón o motivo de fallo:</label>
+            <select id="failureReason" name="failureReason">
+                <option value="">Seleccionar motivo</option>
+                {% for reason in failureReasonList %}
+                    <option value="{{ reason.reason }}">{{ reason.reason }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <button type="submit">Agregar</button>
+        </div>
+    </form>
+    
+</body>
+</html>

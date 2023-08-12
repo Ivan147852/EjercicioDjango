@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Consulta de Número de Tracking</title>
+</head>
+<body>
+    <h1>Consulta de Número de Tracking</h1>
+    <form method="post" action="/trackingResult/">
+        {% csrf_token %}
+        <label for="package">Seleccione un paquete:</label>
+        <select id="package" name="package">
+            <option value="">Seleccionar</option>
+            {% for package in packages %}
+                <option value="{{ package.tracking }}">{{ package.tracking }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Consultar</button>
+    </form>
+</body>
+</html>

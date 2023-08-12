@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado de Consulta de Tracking</title>
+</head>
+<body>
+    <h1>Resultado de Consulta de Tracking</h1>
+    {% if package %}
+        <h2>Información del Paquete:</h2>
+        <p>Tracking: {{ package.tracking }}</p>
+        <p>Nombre destinatario: {{ package.recipient.name }}</p>
+        <p>Direccion destinatario: {{ package.recipient.address }}</p>
+        <p>Telefono destinatario: {{ package.recipient.phone }}</p>
+        <p>Peso: {{ package.weight }}</p>
+        <p>Altura: {{ package.height }}</p>
+        <p>Estado: {{ package.state }}</p>
+        <p>Cliente: {{ package.client }}</p>
+        <p>Tipo de Paquete: {{ package.typePackage }}</p>
+
+        {% if package.formitem.form %}
+            <h2>En Planilla:</h2>
+            <p>Número de Planilla: {{ package.formitem.form.formNumber }}</p>
+            <p>Posicion en la Planilla: {{package.formitem.position}} </p>
+            <p>Fecha de Planilla: {{ package.formitem.form.date }}</p>
+            {% if package.formitem.failureReason%}
+                <p> Razon de fallo: {{ package.formitem.failureReason }}</p>
+            {% endif %}
+        {% else %}
+            <p>El paquete no se encuentra en ninguna planilla.</p>
+        {% endif %}
+
+    {% else %}
+        <p>No se encontró información para el número de tracking ingresado.</p>
+    {% endif %}
+</body>
+</html>
