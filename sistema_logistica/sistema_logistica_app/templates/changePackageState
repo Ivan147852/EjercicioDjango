@@ -1,0 +1,13 @@
+<form method="post">
+    {% csrf_token %}
+    <h2>Cambiar estado de paquetes a En distribución</h2>
+    <ul>
+        {% for item in itemsInDeposit %}
+            <li>
+                <input type="checkbox" name="selected_items" value="{{ item.id }}">
+                {{ item.name }} - {{ item.status }}
+            </li>
+        {% endfor %}
+    </ul>
+    <button type="submit">Cambiar a En distribución</button>
+</form>

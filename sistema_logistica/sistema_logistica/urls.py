@@ -20,7 +20,9 @@ from sistema_logistica_app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('consultTracking/',consultTracking),
-    path('trackingResult/',trackingResult),
-    path('formItemsList/<int:formNumber>/',formItemsList),
+    path('consultTracking/',consultTracking, name='consultTracking'),
+    path('trackingResult/',trackingResult, name='trackingResult'),
+    path('formItemsList/<int:formNumber>/',formItemsList, name='formItemsList'),
+    path('deleteFormItem/<int:formNumber>/<int:formItemPosition>/', deleteFormItem, name='deleteFormItem'),
+    path('changePackageState/<int:formNumber>', changePackageState, name='changePackageState'),
 ]

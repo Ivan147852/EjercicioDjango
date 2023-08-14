@@ -2,22 +2,59 @@
 <html>
 <head>
     <title>Lista de FormItems</title>
+    <style>
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+        .error-block {
+            background-color: #ffcccc; /* Color de fondo */
+            color: #d8000c; /* Color del texto */
+            border: 1px solid #b7000b; /* Borde */
+            padding: 10px; /* Espaciado interior */
+            margin-bottom: 20px; /* Espaciado inferior */
+        }
+    </style>
 </head>
 <body>
     <h1>Item de planilla de la planilla {{ form.formNumber }}</h1>
     <ul>
         {% for formItem in formItems %}
-            <li>{{ formItem }}</li>
+            <li style="margin-bottom: 10px;">
+                {{ formItem }}
+                <a href="{% url 'deleteFormItem' form.formNumber formItem.position %}" class="delete-button">X</a>
+            </li>
         {% endfor %}
     </ul>
-
+    <form method="post" action = "{% url 'changePackageState' form.formNumber %}">
+        {% csrf_token %}
+        <h2>Cambiar estado de los paquetes</h2>
+        <select id="newState" name="newState">
+            <option value="">Seleccionar nuevo estado de paquetes</option>
+            {% for state in states %}
+                <option value="{{ state }}">{{ state }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Cambiar estado</button>
+    </form>
     <h2>Agregar nuevo Item de planilla</h2>
-    <form method="post">
+    <form method="post" action="{% url 'formItemsList' form.formNumber %}">
         {% csrf_token %}
         <div style="display: flex; flex-direction: column;">
             <label for="position">Posición del item de planilla:</label>
             <input type="number" name="position" required>
         </div>
+        {% if mensaje_error %}
+            <div class="error-block">
+                <p class="error-message">{{ mensaje_error }}</p>
+            </div>
+        {% endif %}
         <div style="display: flex; flex-direction: column;">
             <label for="package">Paquete a agregar:</label>
             <select id="package" name="package" required>
@@ -43,3 +80,4 @@
     
 </body>
 </html>
+

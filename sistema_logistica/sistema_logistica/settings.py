@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'sistema_logistica_app'
+    'sistema_logistica_app',
+    'django_seed',
 ]
 
 MIDDLEWARE = [

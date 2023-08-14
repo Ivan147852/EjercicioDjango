@@ -68,5 +68,5 @@ class FormItem(models.Model):
         unique_together = ('form','position')
 
     def __str__(self):
-        return f"FormItem #{self.position} - Package: {self.package}, Form: {self.form}"
+        return f"Planilla #{self.form} - Posicion: {self.position}, Paquete: {self.package}, - Estado: {self.package.state} "
 
