@@ -1,13 +1,29 @@
 # EjercicioDjango
 Ejercicio de Backend de un Sistema de Logística
 
+### Instalar dependencias
+
+Desde la carpeta raiz ejecutar este comando para instalar las dependencias necesarias
+
+```bash
+pip install -r requirements.txt
+```
+
 ### Activar entorno virtual
 
-Desde la carpeta raiz activar el entorno virtual con "venv/Scripts/activate"
+Desde la carpeta raiz activar el entorno virtual con 
+
+```bash
+venv/Scripts/activate
+```
 
 ### Iniciar el servidor
 
-Activar mediante "python sistema_logistica/manage.py runserver"
+Activar mediante 
+
+```bash
+python sistema_logistica/manage.py runserver
+```
 
 ### Admin
 
