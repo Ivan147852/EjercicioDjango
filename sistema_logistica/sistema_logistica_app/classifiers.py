@@ -1,5 +1,3 @@
-# En el archivo classifiers.py
-
 from abc import abstractmethod
 
 class PackageClassifier:

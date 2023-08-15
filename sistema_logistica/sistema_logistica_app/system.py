@@ -1,7 +1,7 @@
 from .classifiers import *
 from .enums import ClassificationAttributes, ClassificationValues
 from .settings import THRESHOLD_LIGHT_WEIGHT, THRESHOLD_MEDIUM_WEIGHT, THRESHOLD_HEAVY_WEIGHT
-
+ 
 class System:
 
     classifiers = []

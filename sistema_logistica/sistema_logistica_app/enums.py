@@ -1,7 +1,7 @@
 """ Enumerados del proyecto:
 Aqui se encuentran las listas de valores predefinidos del proyecto, para evitar las constantes en codigo y
 facilitar la comprension del codigo
-"""
+""" 
 
 from enum import Enum
 from django.db import models
