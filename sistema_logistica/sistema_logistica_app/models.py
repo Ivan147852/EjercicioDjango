@@ -1,7 +1,7 @@
 from django.db import models
 from .enums import *
 from .classifiers import *
-from .settings import CLASSIFICATION_MODE
+from .settings import *
 from .system import System
 
 import uuid
@@ -33,13 +33,17 @@ class Package(models.Model):
     recipient = models.ForeignKey(Recipient, on_delete=models.CASCADE)
     weight = models.DecimalField(max_digits=7, decimal_places=2)
     height = models.DecimalField(max_digits=7, decimal_places=2)
-    state = models.CharField(max_length=15, choices=[(state.value, state.name) for state in StatesEnum])
+    state = models.CharField(max_length=15, choices=[(state.value, state.name) for state in StatesEnum], default=DEFAULTPACKAGESTATE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     typePackage = models.CharField(max_length=2, blank=True)
     
     def __str__(self):
         return self.tracking
     
+    @staticmethod
+    def getFreePackages():
+        return Package.objects.filter(formitem=None)
+
     def save(self, *args, **kwargs):
         if not self.typePackage:
             self.typePackage = System.classifyPackage(self,CLASSIFICATION_MODE)
@@ -54,6 +58,10 @@ class Form(models.Model):
 
 class FailureReason(models.Model):
     reason = models.CharField(max_length=30, primary_key=True)
+
+    @staticmethod
+    def getFailureReasons():
+        return FailureReason.objects.all() 
 
     def __str__(self):
         return self.reason

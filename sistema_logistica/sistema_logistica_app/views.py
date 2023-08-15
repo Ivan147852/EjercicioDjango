@@ -1,7 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.urls import reverse
 from .models import *
-from .system import System
 from .enums import StatesEnum
 
 # Create your views here.
@@ -23,7 +21,6 @@ def formItemsList(request, formNumber):
     form = get_object_or_404(Form, formNumber=formNumber)
     formItems = FormItem.objects.filter(form=form).order_by('position')
     states = StatesEnum.getStatesEnumChoices()
-    print("Enum choices = "+str(states))
     if request.method == 'POST':
         position = request.POST.get('position')
         packageId = request.POST.get('package')
@@ -43,27 +40,18 @@ def formItemsList(request, formNumber):
             context = {
                 'form': form,
                 'formItems': formItems,
-                'packageList': System.getFreePackages(),
-                'failureReasonList' : System.getFailureReasons(),
+                'packageList': Package.getFreePackages(),
+                'failureReasonList' : FailureReason.getFailureReasons(),
                 'states':states,
                 'mensaje_error': mensaje_error,
             }
             return render(request, 'formItemsList.html', context)
-        
-        context = {
-            'form': form,
-            'formItems': formItems,
-            'packageList': System.getFreePackages(),
-            'failureReasonList' : System.getFailureReasons(),
-            'states': states
-        }
-        return render(request, 'formItemsList.html', context)
     
     context = {
         'form': form,
         'formItems': formItems,
-        'packageList': System.getFreePackages(),
-        'failureReasonList' : System.getFailureReasons(),
+        'packageList': Package.getFreePackages(),
+        'failureReasonList' : FailureReason.getFailureReasons(),
         'states': states
     }
     return render(request, 'formItemsList.html', context)
@@ -77,13 +65,13 @@ def deleteFormItem(request, formNumber, formItemPosition):
         pass
 
     formItems = FormItem.objects.filter(form=form).order_by('position')
-    states = StatesEnum.getStatesEnumChoices()  # Obtén las opciones del Enum
+    states = StatesEnum.getStatesEnumChoices()
 
     context = {
             'form': form,
             'formItems': formItems,
-            'packageList': System.getFreePackages(),
-            'failureReasonList' : System.getFailureReasons(),
+            'packageList': Package.getFreePackages(),
+            'failureReasonList' : FailureReason.getFailureReasons(),
             'states': states
             }
 
@@ -93,20 +81,17 @@ def changePackageState(request, formNumber):
     form = get_object_or_404(Form, formNumber=formNumber)
     formItems = FormItem.objects.filter(form=form).order_by('position')
 
-    print(request.POST['newState'])
-
     for f in formItems:
         f.package.state = request.POST['newState']
+        f.package.save()
 
     states = StatesEnum.getStatesEnumChoices()
-    print("VEngo a changePackageState")
-
     context = {
             'form': form,
             'formItems': formItems,
-            'packageList': System.getFreePackages(),
-            'failureReasonList' : System.getFailureReasons(),
+            'packageList': Package.getFreePackages(),
+            'failureReasonList' : FailureReason.getFailureReasons(),
             'states': states
-        }
+    }
 
     return render(request, 'formItemsList.html', context)

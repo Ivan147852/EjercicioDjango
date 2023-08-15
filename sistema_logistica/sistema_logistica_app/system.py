@@ -16,16 +16,6 @@ class System:
             if classification:
                 return classification
         return None
-    
-    @classmethod
-    def getFreePackages(cls):
-        from .models import Package
-        return Package.objects.filter(formitem=None)
-
-    @classmethod
-    def getFailureReasons(cls):
-        from .models import FailureReason
-        return FailureReason.objects.all()
 
 # Creo las instancias de los clasificadores para agregarlas al sistema
 weightClassifierG = HigherClassifier(attributeValue=3000, classification='G', classificationAttribute=ClassificationAttributes.PESO)

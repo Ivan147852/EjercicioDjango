@@ -1,6 +1,6 @@
 # En el archivo classifiers.py
 
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 
 class PackageClassifier:
     
@@ -30,7 +30,6 @@ class CompositeClassifier(PackageClassifier):
 
 
 class LowerClassifier(SimpleClassifier):
-    
     def classify(self, package, *args):
         for attribute in args:
             if attribute == self.classificationAttribute.value:
@@ -41,7 +40,6 @@ class LowerClassifier(SimpleClassifier):
         return None
 
 class HigherClassifier(SimpleClassifier):
-
     def classify(self, package, *args):
         for attribute in args:
             if attribute == self.classificationAttribute.value:
@@ -52,7 +50,6 @@ class HigherClassifier(SimpleClassifier):
         return None
 
 class EqualClassifier(SimpleClassifier):
-
     def classify(self, package, *args):
         for attribute in args:
             if attribute == self.classificationAttribute.value:
@@ -63,7 +60,6 @@ class EqualClassifier(SimpleClassifier):
         return None
 
 class AndClassifier(CompositeClassifier):
-
     def classify(self, package, *args):
         if (self.classifier1.classify(package, *args) != None) and (self.classifier2.classify(package, *args)):
             return self.classification
@@ -72,7 +68,6 @@ class AndClassifier(CompositeClassifier):
         return None
 
 class OrClassifier(CompositeClassifier):
-
     def classify(self, package, *args):
         if (self.classifier1.classify(package, *args) != None) or (self.classifier2.classify(package, *args)):
             return self.classification
