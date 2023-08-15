@@ -51,9 +51,7 @@
             <input type="number" name="position" required>
         </div>
         {% if mensaje_error %}
-            <div class="error-block">
-                <p class="error-message">{{ mensaje_error }}</p>
-            </div>
+            <p class="error-message, error-block">{{ mensaje_error }}</p>
         {% endif %}
         <div style="display: flex; flex-direction: column;">
             <label for="package">Paquete a agregar:</label>
