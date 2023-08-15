@@ -84,6 +84,10 @@ class FormItem(models.Model):
     position = models.IntegerField()
     failureReason = models.ForeignKey(FailureReason, blank=True, null=True, default=None, on_delete=models.CASCADE)
 
+    @property
+    def packageState(self):
+        return self.package.state
+
     class Meta:
         unique_together = ('form','position')
 

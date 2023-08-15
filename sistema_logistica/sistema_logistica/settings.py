@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'sistema_logistica_app',
-    'django_seed',
 ]
 
 MIDDLEWARE = [
@@ -58,10 +57,7 @@ ROOT_URLCONF = 'sistema_logistica.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'sistema_logistica_app', 'templates', 'admin'),
-                 os.path.join(BASE_DIR, 'sistema_logistica_app', 'templates', 'tracking')
-                ],  
-
+        'DIRS': [os.path.join(BASE_DIR, 'sistema_logistica_app', 'templates', 'tracking')],  
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
