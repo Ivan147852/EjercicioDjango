@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #'sistema_logistica_app.apps.SistemaLogisticaAppAdminConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +58,10 @@ ROOT_URLCONF = 'sistema_logistica.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'sistema_logistica_app', 'templates'),],
+        'DIRS': [os.path.join(BASE_DIR, 'sistema_logistica_app', 'templates', 'admin'),
+                 os.path.join(BASE_DIR, 'sistema_logistica_app', 'templates', 'tracking')
+                ],  
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

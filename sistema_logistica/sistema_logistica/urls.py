@@ -17,12 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from sistema_logistica_app.views import *
+from sistema_logistica_app.admin import stormtechAdmin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('admin/formItemsList/<int:formNumber>/',formItemsList, name='formItemsList'),
+    path('admin/deleteFormItem/<int:formNumber>/<int:formItemPosition>/', deleteFormItem, name='deleteFormItem'),
+    path('admin/changePackageState/<int:formNumber>', changePackageState, name='changePackageState'),
+    path('stormtechadmin/', stormtechAdmin.urls),
     path('consultTracking/',consultTracking, name='consultTracking'),
     path('trackingResult/',trackingResult, name='trackingResult'),
-    path('formItemsList/<int:formNumber>/',formItemsList, name='formItemsList'),
-    path('deleteFormItem/<int:formNumber>/<int:formItemPosition>/', deleteFormItem, name='deleteFormItem'),
-    path('changePackageState/<int:formNumber>', changePackageState, name='changePackageState'),
 ]
