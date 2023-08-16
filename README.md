@@ -27,7 +27,10 @@ python sistema_logistica/manage.py runserver
 
 ### Admin
 
-Desde la url de admin: http://localhost:8000/admin/ podran realizarse las acciones de creación, borrado, modificacion de elementos, los cuales fueron creados previamente.
+Desde la url de admin: http://localhost:8000/admin/ podran realizarse las acciones de creación, borrado, modificacion de elementos, los cuales fueron creados previamente. El usuario y clave para ingresar son:
+
+Usuario: ivan_
+Clave: ejtecsislog
 
 #### Cargado automatico de tipo de paquetes
 
